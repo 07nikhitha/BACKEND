@@ -37,6 +37,9 @@ app.use("/api/product", products);
 /** Helper function, asynchronous to start the Express application
  * only if the connection to the database is successful.
 */
+app.get('/', (req, res) => {
+	res.send('Hello, world!');
+  });
 const startServer = async () => {
 	const isDbConnected = await connectDB()
 	if (isDbConnected) {
