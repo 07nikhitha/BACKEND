@@ -37,9 +37,18 @@ app.use("/api/product", products);
 /** Helper function, asynchronous to start the Express application
  * only if the connection to the database is successful.
 */
-app.get('/', (req, res) => {
-	res.send('Hello, world!');
+// Example route to get all users
+app.get('/api/users', async (req, res) => {
+	try {
+	  // Fetch all users from database or other data source
+	  const users = await User.find(); // Example using Mongoose ORM
+	  res.json(users); // Send the users as JSON response
+	} catch (err) {
+	  console.error(err);
+	  res.status(500).json({ message: 'Server Error' });
+	}
   });
+  
 const startServer = async () => {
 	const isDbConnected = await connectDB()
 	if (isDbConnected) {
